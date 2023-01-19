@@ -24,3 +24,16 @@ resource "aws_security_group" "PublicEC2_sg" {
     cidr_blocks      = ["0.0.0.0/0"]
   }
 }
+
+resource "aws_security_group" "PrivateEC2_sg" {
+  name        = "PrivateEC2_sg"
+  description = "allow outbounds connections only"
+  vpc_id = aws_vpc.vpc_ITI.id
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+}
